@@ -3,20 +3,21 @@ import '../index.css'
 import { useEffect, useState } from "react";
 
 export default function Joke(props){
-    const[showAllJoke, setAllJoke] = useState([])
 
+    // alert(props.category_id)
+    const[showAllJoke, setAllJoke] = useState([])
+    
 
 let jokeUrl = "https://api.jokes.digitalrenter.com/api/jokes"
 let displayjoke;
 
 function pullCategory(){
-    alert(props.category_id)
     fetch(jokeUrl)
     .then(response => response.json())
      .then(responseData  => {
       displayjoke = responseData.filter((response) => (
     
-            response.category_id == props.category_id
+            response.id !== props.category_id
       ))
       
       console.log(displayjoke)
@@ -33,8 +34,8 @@ useEffect(() =>{
     
       const updatedJokes = showAllJoke.map(joke => {
            
-        if(joke.id === newComment.joke_id){
-          joke.comments = [newComment, ...joke.comments];
+        if(joke.id === newComment.data.joke_id){
+          joke.comments = [newComment.data, ...joke.comments];
         }
         return joke
       });

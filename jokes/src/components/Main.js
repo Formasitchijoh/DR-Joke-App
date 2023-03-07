@@ -10,7 +10,7 @@ import Navbar from "../NavBar_component/NavBar";
 import Apps from "./Modal/App";
 function Main() {  
 
-const[CategoryIndex, setCategoryIndex] = useState(1);
+const[CategoryIndex, setCategoryIndex] = useState(null);
 const[showMore, setShowMore] = useState(false)
 const[CategoryJson, setCategoryJson] = useState([]) //used to get the category replaces CategoryList
 
@@ -36,20 +36,6 @@ useEffect(() =>{
 },[])
 
 
-//End of getting Category 
- 
-//Contains all the handle methods
-function handleCategoryIndex(e){
-  setCategoryIndex(e.target.value)
-  // alert('Hello')
-  alert(e.target.value);
-}
-
-// const cateIndex = () => {
-  
-//   if(CategoryIndex )
-// }
-
 function handleShowMore(){ 
     setShowMore((prev)=>!prev)
 }
@@ -62,7 +48,7 @@ function handleShowMore(){
         <Navbar 
         index={CategoryIndex}/>
           <Search
-           handleCategoryId={handleCategoryIndex}
+           setCategoryIndex={setCategoryIndex}
            CategoryIndex={CategoryIndex}
             />
            <Categorys />
